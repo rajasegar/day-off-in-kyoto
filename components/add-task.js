@@ -4,7 +4,8 @@ class AddTaskComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
 <form>
-<input type="text" id="text" placeholder="Add task" name="text" />
+<label for="text">Task name:</label>
+<input type="text" id="text" placeholder="Add task"  name="text" />
       <button type="submit">Add</button>
 </form>
     

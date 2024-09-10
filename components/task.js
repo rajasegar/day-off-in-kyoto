@@ -24,10 +24,12 @@ class TaskComponent extends HTMLElement {
     const id = this.getAttribute('id');
     this.innerHTML = `
 <li>
-<input type="checkbox" checked="${done}"/>
+<label>
+<input tabindex="0" type="checkbox" ${done == 'true' ? 'checked' : ''}/>
 ${this.#editMode ? `<input type="text" value="${text}"/>`: text}
-<button id="btn-edit" type="button">${this.#editMode ? 'Cancel' : 'Edit'}</button>
-<button data-task-id="${id}" id="btn-delete" type="button">Delete</button>
+</label>
+<button tabindex="0" id="btn-edit" type="button">${this.#editMode ? 'Cancel' : 'Edit'}</button>
+<button tabindex="0" data-task-id="${id}" id="btn-delete" type="button">Delete</button>
 </li>
 `
   }
