@@ -34,6 +34,12 @@ class TasksContextComponent extends HTMLElement {
     this.dispatchEvent(new CustomEvent('task-updated'))
   }
 
+  updateTask({id, text}) {
+    const task = this.#tasks.find(task => task.id == id)
+    task.text = text;
+    this.dispatchEvent(new CustomEvent('task-updated'))
+  }
+
 }
 
 export const registerTasksContextComponent = () => customElements.define('x-tasks-context', TasksContextComponent)

@@ -4,6 +4,9 @@ class TaskListComponent extends HTMLElement {
     this.context.addEventListener('task-added',() => {
       this.update();
     })
+    this.context.addEventListener('task-updated',() => {
+      this.update();
+    })
 
     this.context.addEventListener('task-deleted', () => {
       this.update();
