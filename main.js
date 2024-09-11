@@ -12,7 +12,6 @@ const app = () => {
   registerTaskComponent();
   registerTaskListComponent();
   registerAppComponent();
-  
 }
 
 document.addEventListener('DOMContentLoaded', app);

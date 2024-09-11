@@ -1,23 +1,18 @@
 class TaskListComponent extends HTMLElement {
   connectedCallback() {
     this.context  = this.closest('x-tasks-context'); 
-    this.context.addEventListener('task-added',(ev) => {
+    this.context.addEventListener('task-added',() => {
       this.update();
     })
 
-    this.context.addEventListener('task-deleted', (ev) => {
-      debugger;
+    this.context.addEventListener('task-deleted', () => {
       this.update();
     })
 
     this.update();
-
-
-
   }
 
   update() {
-
     const tasks = this.closest('x-tasks-context').tasks;
     this.innerHTML = `
 <ul class="tasks-list">
@@ -26,8 +21,6 @@ class TaskListComponent extends HTMLElement {
       `).join('')}
     </ul>
 `
- 
-
   }
 }
 

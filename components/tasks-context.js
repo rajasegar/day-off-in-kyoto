@@ -27,9 +27,13 @@ class TasksContextComponent extends HTMLElement {
     this.#tasks = this.#tasks.filter(task => task.id != id)
     this.dispatchEvent(new CustomEvent('task-deleted'))
   }
-  connectedCallback() {
-    
+
+  updateTaskStatus(id, status) {
+    const task = this.#tasks.find(task => task.id == id)
+    task.done = status;
+    this.dispatchEvent(new CustomEvent('task-updated'))
   }
+
 }
 
 export const registerTasksContextComponent = () => customElements.define('x-tasks-context', TasksContextComponent)
