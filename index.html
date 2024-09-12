@@ -7,6 +7,7 @@
     <title>A Day off in Kyoto</title>
   </head>
   <body>
+    <!-- App template -->
     <template id="app-template">
       <x-tasks-context>
         <h1>Day off in Kyoto</h1>
@@ -14,6 +15,7 @@
         <x-task-list></x-task-list>
       </x-tasks-context>
     </template>
+    <!-- New task templates -->
     <template id="add-task-template">
       <form>
         <label for="text">Task name:</label>
@@ -22,9 +24,10 @@
         <button type="submit">Add</button>
       </form>
     </template>
+    <!-- Individual task template -->
     <template id="task-template">
       <li>
-              <label>
+        <label>
           <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
           <span></span>
         </label>
@@ -32,22 +35,22 @@
         <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
       </li>
     </template>
+    <!-- Edit task template -->
     <template id="edit-task-template">
       <style>
         form { display:inline; }
       </style>
-
-        <label>
-          <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
-        </label>
-        
-        <form>
-          <input type="hidden" name="id" value=""/>
-          <input type="text" value="" class="task-input" name="text"/>
-          <button type="submit">Save</button>
-        </form>
-        <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
+      <label>
+        <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
+      </label>
+      <form>
+        <input type="hidden" name="id" value=""/>
+        <input type="text" value="" class="task-input" name="text"/>
+        <button type="submit">Save</button>
+      </form>
+      <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
     </template>
+    <!-- Task list template -->
     <template id="task-list-template">
       <ul class="tasks-list">
       </ul>
