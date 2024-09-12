@@ -7,8 +7,8 @@ class TaskComponent extends HTMLElement {
     this.addEventListener('click', (ev) => {
       if(ev.target.matches('.task-edit-btn')) {
         this.#editMode = true;
-               this.update();
-         }
+        this.update();
+      }
 
       if(ev.target.matches('.task-delete-btn')) {
         this.closest('x-tasks-context').deleteTask(ev.target.dataset.taskId)
@@ -24,35 +24,71 @@ class TaskComponent extends HTMLElement {
       const data = new FormData(ev.target);
       this.#editMode = false;
       this.closest('x-tasks-context').updateTask(Object.fromEntries(data.entries()))
-      this.update();
+
     })
+
+
+  }
+
+
+  createTaskElement(id, text, done) {
+    const taskTemplate = document.getElementById('task-template')
+    const el = taskTemplate.content.cloneNode(true);
+    const chkbox = el.querySelector('.task-done-chk')
+    chkbox.id = `task-done-${id}`
+    if(done == "true") {
+      chkbox.setAttribute('checked', true)
+    }
+
+    chkbox.dataset.taskId = id;
+
+    const span = el.querySelector('span');
+    span.textContent = text;
+
+    const delBtn = el.querySelector('.task-delete-btn');
+    delBtn.dataset.taskId = id;
+
+    return el;
+  }
+
+  createEditTaskElement(id, text, done) {
+    const taskTemplate = document.getElementById('edit-task-template')
+    const el = taskTemplate.content.cloneNode(true);
+    const chkbox = el.querySelector('.task-done-chk')
+    chkbox.id = `task-done-${id}`
+    if(done == "true") {
+      chkbox.setAttribute('checked', true)
+    }
+
+    chkbox.dataset.taskId = id;
+
+    const hidden = el.querySelector('input[type=hidden]');
+    hidden.value = id;
+
+    const input = el.querySelector('.task-input')
+    input.value = text;
+
+    const delBtn = el.querySelector('.task-delete-btn');
+    delBtn.dataset.taskId = id;
+
+
+    return el;
   }
 
   update() {
     const text = this.getAttribute('text');
     const done = this.getAttribute('done');
     const id = this.getAttribute('id');
-    this.innerHTML = `
-<style>
-form { display:inline; }
-</style>
-<li>
-<label>
-<input id="task-done-${id}" data-task-id="${id}" class="task-done-chk" tabindex="0" type="checkbox" ${done == 'true' ? 'checked' : ''}/>
-${this.#editMode ? `
-    </label>
-      <form>
-      <input type="hidden" name="id" value="${id}"/>
-      <input type="text" value="${text}" name="text"/>
-      <button type="submit">Save</button>
-      </form>`
-: `${text}</label>
-  <button tabindex="0"  class="task-edit-btn" type="button">Edit</button>`
-  }
-    
-<button tabindex="0" data-task-id="${id}" class="task-delete-btn" type="button">Delete</button>
-</li>
-`
+
+    if(this.#editMode) {
+      this.removeChild(this.firstElementChild);
+      this.appendChild(this.createEditTaskElement(id,text, done))
+    } else {
+      
+      this.appendChild(this.createTaskElement(id, text, done));
+
+    }    
+
   }
 }
 

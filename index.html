@@ -7,9 +7,50 @@
     <title>A Day off in Kyoto</title>
   </head>
   <body>
+    <template id="app-template">
+      <x-tasks-context>
+        <h1>Day off in Kyoto</h1>
+        <x-add-task></x-add-task>
+        <x-task-list></x-task-list>
+      </x-tasks-context>
+    </template>
+    <template id="add-task-template">
+      <form>
+        <label for="text">Task name:</label>
+        <input type="text" id="text" placeholder="Add task"  name="text" required
+               />
+        <button type="submit">Add</button>
+      </form>
+    </template>
+    <template id="task-template">
+      <li>
+              <label>
+          <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
+          <span></span>
+        </label>
+        <button tabindex="0"  class="task-edit-btn" type="button">Edit</button>
+        <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
+      </li>
+    </template>
+    <template id="edit-task-template">
+      <style>
+        form { display:inline; }
+      </style>
+
+        <label>
+          <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
+        </label>
+        
+        <form>
+          <input type="hidden" name="id" value=""/>
+          <input type="text" value="" class="task-input" name="text"/>
+          <button type="submit">Save</button>
+        </form>
+        <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
+    </template>
     <div id="app">
       <x-app></x-app>
-      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

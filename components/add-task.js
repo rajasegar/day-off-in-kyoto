@@ -1,12 +1,7 @@
 class AddTaskComponent extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
-<form>
-<label for="text">Task name:</label>
-<input type="text" id="text" placeholder="Add task"  name="text" />
-      <button type="submit">Add</button>
-</form>
-`;
+    const template = document.getElementById('add-task-template')
+    this.appendChild(template.content.cloneNode(true))
 
     const context = this.closest('x-tasks-context');
 
