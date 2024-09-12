@@ -26,14 +26,12 @@
     </template>
     <!-- Individual task template -->
     <template id="task-template">
-      <li>
         <label>
           <input id="" data-task-id="" class="task-done-chk" tabindex="0" type="checkbox"/>
           <span></span>
         </label>
         <button tabindex="0"  class="task-edit-btn" type="button">Edit</button>
         <button tabindex="0" data-task-id="" class="task-delete-btn" type="button">Delete</button>
-      </li>
     </template>
     <!-- Edit task template -->
     <template id="edit-task-template">
@@ -54,7 +52,13 @@
     <template id="task-list-template">
       <ul class="tasks-list">
       </ul>
-    </template>
+</template>
+<!-- Task component template -->
+<template id="task-component-template">
+  <li>
+    <x-task></x-task>
+  </li>
+</template>
     <div id="app">
       <x-app></x-app>
     </div>

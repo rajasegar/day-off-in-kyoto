@@ -21,11 +21,12 @@ class TaskListComponent extends HTMLElement {
     const el = template.content.cloneNode(true);
     const fragment = document.createDocumentFragment();
     tasks.forEach(t => {
-      const taskEl = document.createElement('x-task');
+      const wrapper = document.getElementById('task-component-template').content.cloneNode(true);
+      const taskEl = wrapper.querySelector('x-task');
       taskEl.id = t.id;
       taskEl.setAttribute('text', t.text);
       taskEl.setAttribute('done', t.done);
-      fragment.appendChild(taskEl);
+      fragment.appendChild(wrapper);
     })
     el.querySelector('.tasks-list').appendChild(fragment);
     this.replaceChildren(el);
