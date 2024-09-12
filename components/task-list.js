@@ -17,13 +17,19 @@ class TaskListComponent extends HTMLElement {
 
   update() {
     const tasks = this.closest('x-tasks-context').tasks;
-    this.innerHTML = `
-<ul class="tasks-list">
-      ${tasks.map(task => `
-      <x-task id="${task.id}" text="${task.text}" done="${task.done}"></x-task>
-      `).join('')}
-    </ul>
-`
+    const template = document.getElementById('task-list-template');
+    const el = template.content.cloneNode(true);
+    const fragment = document.createDocumentFragment();
+    tasks.forEach(t => {
+      const taskEl = document.createElement('x-task');
+      taskEl.id = t.id;
+      taskEl.setAttribute('text', t.text);
+      taskEl.setAttribute('done', t.done);
+      fragment.appendChild(taskEl);
+    })
+    el.querySelector('.tasks-list').appendChild(fragment);
+    this.replaceChildren(el);
+
   }
 }
 
